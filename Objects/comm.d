@@ -1,0 +1,10 @@
+.\objects\comm.o: Middle\comm.c
+.\objects\comm.o: D:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include\stm32f7xx.h
+.\objects\comm.o: D:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include\stm32f756xx.h
+.\objects\comm.o: D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm7.h
+.\objects\comm.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\comm.o: D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h
+.\objects\comm.o: D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h
+.\objects\comm.o: D:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmSimd.h
+.\objects\comm.o: D:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include\system_stm32f7xx.h
+.\objects\comm.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
