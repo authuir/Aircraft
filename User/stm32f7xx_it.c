@@ -123,7 +123,7 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   //HAL_IncTick();
-	extern __IO int mscnt;
+	extern int mscnt;
 	mscnt++;
 }
 
@@ -178,6 +178,7 @@ void USARTx_IRQHandler(void)
 void EXTI15_10_IRQHandler(void)
 {
   //HAL_GPIO_EXTI_IRQHandler(KEY_BUTTON_PIN);
+	return ;
 }
 
 /**

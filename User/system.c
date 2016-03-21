@@ -1,6 +1,6 @@
 #include "system.h"
 
-__IO int mscnt = 0;
+volatile int mscnt = 0;
 
 /**
   * @brief  CPU L1-Cache enable.

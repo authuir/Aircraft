@@ -23,7 +23,7 @@
 void SystemClock_Config(void);
 void CPU_CACHE_Enable(void);
 
-void Init_LED();
+void Init_LED(void);
 
 
 

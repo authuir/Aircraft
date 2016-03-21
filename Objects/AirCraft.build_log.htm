@@ -22,18 +22,15 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 W:\AirCraft\AirCraft.uvprojx
-Project File Date:  03/16/2016
+Project File Date:  03/17/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'AirCraft'
-compiling main.c...
-User\main.c(36): warning:  #111-D: statement is unreachable
-  	return 0;
-User\main.c: 1 warning, 0 errors
+compiling wifi.c...
 linking...
-Program Size: Code=2150 RO-data=506 RW-data=8 ZI-data=1632  
-".\Objects\AirCraft.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=2146 RO-data=506 RW-data=8 ZI-data=1632  
+".\Objects\AirCraft.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -60,14 +57,14 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:4.1.0
 
    * Component: ARM::CMSIS:DSP:1.4.5
-      Include file:  CMSIS\Include\arm_math.h
       Library file:  CMSIS\Lib\ARM\arm_cortexM7lfsp_math.lib
+      Include file:  CMSIS\Include\arm_math.h
 
    * Component: Keil::Device:Startup:1.0.1
-      Source file:   MDK\Device\Source\ARM\STM32F7xx_OTP.s
       Include file:  Drivers\CMSIS\Device\ST\STM32F7xx\Include\stm32f7xx.h
-      Source file:   Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\arm\startup_stm32f756xx.s
+      Source file:   MDK\Device\Source\ARM\STM32F7xx_OTP.s
       Source file:   MDK\Device\Source\ARM\STM32F7xx_OPT.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\arm\startup_stm32f756xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\system_stm32f7xx.c
 Build Time Elapsed:  00:00:03
 </pre>

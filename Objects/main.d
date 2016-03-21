@@ -52,3 +52,4 @@
 .\objects\main.o: .\Driver\STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_usb.h
 .\objects\main.o: User\system.h
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: .\Middle\wifi.h

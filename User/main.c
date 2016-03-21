@@ -2,6 +2,7 @@
 #include "stm32f7xx.h"
 #include "stm32f7xx_hal.h"
 #include "system.h"
+#include "wifi.h"
 
 extern __IO int mscnt;
 
@@ -13,7 +14,8 @@ int main()
 	//SystemClock_Config();
 	
 	HAL_Init();
-	Init_LED(true);
+	Init_LED();
+	//Init_WIFI();
 	
 	while(1)
 	{
