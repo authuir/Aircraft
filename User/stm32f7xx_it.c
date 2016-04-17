@@ -19,7 +19,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* UART handler declared in "main.c" file */
-//extern UART_HandleTypeDef UartHandle;
+extern UART_HandleTypeDef BleUartHandle;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -122,17 +122,12 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-  //HAL_IncTick();
 	extern int mscnt;
+	HAL_IncTick();
 	mscnt++;
 }
 
-/******************************************************************************/
-/*                 STM32F7xx Peripherals Interrupt Handlers                   */
-/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
-/*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f7xx.s).                                               */
-/******************************************************************************/
+
 /**
   * @brief  This function handles DMA interrupt request.  
   * @param  None
@@ -140,9 +135,9 @@ void SysTick_Handler(void)
   * @Note   This function is redefined in "main.h" and related to DMA  
   *         used for USART data transmission     
   */
-void USARTx_DMA_RX_IRQHandler(void)
+void DMA1_Stream3_IRQHandler(void)
 {
-  //HAL_DMA_IRQHandler(UartHandle.hdmarx);
+//	HAL_DMA_IRQHandler(BleUartHandle.hdmarx);
 }
 
 /**
@@ -152,9 +147,9 @@ void USARTx_DMA_RX_IRQHandler(void)
   * @Note   This function is redefined in "main.h" and related to DMA  
   *         used for USART data reception    
   */
-void USARTx_DMA_TX_IRQHandler(void)
+void DMA1_Stream1_IRQHandler(void)
 {
-  //HAL_DMA_IRQHandler(UartHandle.hdmatx);
+//	HAL_DMA_IRQHandler(BleUartHandle.hdmatx);
 }
 
 
@@ -165,9 +160,9 @@ void USARTx_DMA_TX_IRQHandler(void)
   * @Note   This function is redefined in "main.h" and related to DMA  
   *         used for USART data transmission     
   */
-void USARTx_IRQHandler(void)
+void UART7_IRQHandler(void)
 {
-  //HAL_UART_IRQHandler(&UartHandle);
+	HAL_UART_IRQHandler(&BleUartHandle);
 }
 
 /**

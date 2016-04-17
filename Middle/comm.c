@@ -16,8 +16,8 @@
   */
 void Init_comm(void)
 {
-	GPIO_InitTypeDef GPIO_InitStructure;	  				//定义GPIO结构体
-	USART_InitTypeDef USART_InitStructure;					//定义USART结构体
+//	GPIO_InitTypeDef GPIO_InitStructure;	  				//定义GPIO结构体
+//	USART_InitTypeDef USART_InitStructure;					//定义USART结构体
 
-	GPIO_InitStructure.Mode = 1;
+//	GPIO_InitStructure.Mode = 1;
 }

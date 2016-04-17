@@ -1,7 +1,32 @@
 #ifndef __WIFI_H
 #define __WIFI_H
 
-void Init_WIFI(void);
 
+#define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
+
+/* Size of Trasmission buffer */
+#define TXBUFFERSIZE                      (COUNTOF(aTxBuffer) - 1)
+/* Size of Reception buffer */
+#define RXBUFFERSIZE                      TXBUFFERSIZE
+
+
+#define USARTx_TX_DMA_STREAM              DMA1_Stream4
+#define USARTx_RX_DMA_STREAM              DMA1_Stream2
+#define USARTx_TX_DMA_CHANNEL             DMA_CHANNEL_4
+#define USARTx_RX_DMA_CHANNEL             DMA_CHANNEL_4
+
+/* Definition for USARTx's NVIC */
+#define USARTx_DMA_TX_IRQn                DMA1_Stream4_IRQn
+#define USARTx_DMA_RX_IRQn                DMA1_Stream2_IRQn
+#define USARTx_DMA_TX_IRQHandler          DMA1_Stream4_IRQHandler
+#define USARTx_DMA_RX_IRQHandler          DMA1_Stream2_IRQHandler
+
+/* Definition for USARTx's NVIC */
+#define USARTx_IRQn                      UART4_IRQn
+#define USARTx_IRQHandler                UART4_IRQHandler
+
+
+void Init_WIFI(void);
+void Init_WIFI_test(void);
 
 #endif

@@ -370,7 +370,7 @@
             <vShortEn>0</vShortEn>
             <vShortWch>0</vShortWch>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>--C99</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>.\Driver\STM32F7xx_HAL_Driver\Inc;.\Config;.\Middle;.\Middle\fatfs;.\Middle\fatfs\option;.\User</IncludePath>
@@ -430,6 +430,11 @@
               <FileName>stm32f7xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32f7xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f7xx_hal_msp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\stm32f7xx_hal_msp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -495,6 +500,21 @@
               <FileName>ff.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middle\fatfs\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff_gen_drv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middle\fatfs\ff_gen_drv.c</FilePath>
+            </File>
+            <File>
+              <FileName>sd_diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middle\fatfs\sd_diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>sd_bsp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middle\fatfs\sd_bsp.c</FilePath>
             </File>
           </Files>
         </Group>

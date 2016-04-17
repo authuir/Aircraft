@@ -2,12 +2,6 @@
 #include "stm32f7xx_hal.h"
 #include "wifi.h"
 
-#define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
-
-/* Size of Trasmission buffer */
-#define TXBUFFERSIZE                      (COUNTOF(aTxBuffer) - 1)
-/* Size of Reception buffer */
-#define RXBUFFERSIZE                      TXBUFFERSIZE
 
 /* Buffer used for transmission */
 uint8_t aTxBuffer[] = "AT";
@@ -15,75 +9,114 @@ uint8_t aTxBuffer[] = "AT";
 /* Buffer used for reception */
 uint8_t aRxBuffer[RXBUFFERSIZE];
 
-void Init_WIFI()
-{
-	uint32_t timekeeper;
-	extern int mscnt;
-	UART_HandleTypeDef UartHandle;
-	GPIO_InitTypeDef WIFI_GPIO;
-	
-	__HAL_RCC_GPIOB_CLK_ENABLE();
-	__HAL_RCC_GPIOE_CLK_ENABLE();
-	
-	/* Configure the WiFi RST pin */
-	WIFI_GPIO.Pin = GPIO_PIN_9;
-	WIFI_GPIO.Mode = GPIO_MODE_OUTPUT_PP;
-	WIFI_GPIO.Pull = GPIO_PULLUP;
-	WIFI_GPIO.Speed = GPIO_SPEED_LOW;
-	HAL_GPIO_Init(GPIOB, &WIFI_GPIO);
+UART_HandleTypeDef WifiUartHandle;
 
-	/* 复位WIFI模块，保持500ms */
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET);
-	/*timekeeper = mscnt+500;
-	while (mscnt<timekeeper)
-		timekeeper = timekeeper;*/
-	
-	timekeeper = 0;
-	while (timekeeper<1000000)
-		timekeeper ++;
-	
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
-	
-	/* Configure the WiFi  pin */
-	WIFI_GPIO.Pin = GPIO_PIN_0;
-	WIFI_GPIO.Mode = GPIO_MODE_IT_FALLING;
-	WIFI_GPIO.Pull = GPIO_NOPULL;
-	WIFI_GPIO.Speed = GPIO_SPEED_FAST;
-	
-	HAL_GPIO_Init(GPIOE, &WIFI_GPIO);
-	
-	/* Enable and set Button EXTI Interrupt to the lowest priority */
-    HAL_NVIC_SetPriority((IRQn_Type)(EXTI15_10_IRQn), 0x0F, 0x00);
-    HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI15_10_IRQn));
-	
-	UartHandle.Instance        = UART4;
+/**
+  * @brief UART MSP Initialization 
+  *        This function configures the hardware resources used in this example: 
+  *           - Peripheral's clock enable
+  *           - Peripheral's GPIO Configuration  
+  *           - DMA configuration for transmission request by peripheral 
+  *           - NVIC configuration for DMA interrupt request enable
+  * @param huart: UART handle pointer
+  * @retval None
+  */
+void WIFI_UART_MspInit(UART_HandleTypeDef *huart)
+{  
+	GPIO_InitTypeDef  GPIO_InitStruct;
+  
+	/*##-1- Enable peripherals and GPIO Clocks #################################*/
+	/* Enable GPIO TX/RX clock */
+	__HAL_RCC_GPIOD_CLK_ENABLE();
+	/* Enable USARTx clock */
+	__UART4_CLK_ENABLE();
 
-	UartHandle.Init.BaudRate   = 9600;
-	UartHandle.Init.WordLength = UART_WORDLENGTH_8B;
-	UartHandle.Init.StopBits   = UART_STOPBITS_1;
-	UartHandle.Init.Parity     = UART_PARITY_NONE;
-	UartHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
-	UartHandle.Init.Mode       = UART_MODE_TX_RX;
-	
-	if(HAL_UART_DeInit(&UartHandle) != HAL_OK)
-	{
-		//Error_Handler();
-	}  
-	if(HAL_UART_Init(&UartHandle) != HAL_OK)
-	{
-		//Error_Handler();
-	}
-	
-	if(HAL_UART_Transmit(&UartHandle, (uint8_t*)aTxBuffer, TXBUFFERSIZE, 5000)!= HAL_OK)
-	{
-		//Error_Handler();   
-	}
-
-	/*##-3- Put UART peripheral in reception process ###########################*/  
-	if(HAL_UART_Receive(&UartHandle, (uint8_t *)aRxBuffer, RXBUFFERSIZE, 5000) != HAL_OK)
-	{
-		//Error_Handler();  
-	}
-	
-	return;
+  
+	/*##-2- Configure peripheral GPIO ##########################################*/  
+	/* UART TX GPIO pin configuration  */
+	GPIO_InitStruct.Pin       = GPIO_PIN_5|GPIO_PIN_6;
+	GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull      = GPIO_PULLUP;
+	GPIO_InitStruct.Speed     = GPIO_SPEED_HIGH;
+	GPIO_InitStruct.Alternate = GPIO_AF8_UART4;
+	HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+    
+	/*##-3- Configure the NVIC for UART ########################################*/
+	/* NVIC for USART */
+	//HAL_NVIC_SetPriority(USARTx_IRQn, 0, 1);
+	//HAL_NVIC_EnableIRQ(USARTx_IRQn);
 }
+
+void WIFI_UART_MspDeInit(UART_HandleTypeDef *huart)
+{
+
+}
+
+void GPIO_TEST()
+{
+	GPIO_InitTypeDef  GPIO_InitStruct;
+  
+	/*##-1- Enable peripherals and GPIO Clocks #################################*/
+	/* Enable GPIO TX/RX clock */
+	__HAL_RCC_GPIOD_CLK_ENABLE();
+  
+	/*##-2- Configure peripheral GPIO ##########################################*/  
+	/* UART TX GPIO pin configuration  */
+	GPIO_InitStruct.Pin       = GPIO_PIN_5|GPIO_PIN_6;
+	GPIO_InitStruct.Mode      = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull      = GPIO_PULLUP;
+	GPIO_InitStruct.Speed     = GPIO_SPEED_HIGH;
+//	GPIO_InitStruct.Alternate = GPIO_AF8_UART4;
+	
+	HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_SET);
+}
+
+/**
+  * @brief 错误处理
+  * @param None
+  * @retval None
+  */
+void Errors_Handler(void)
+{
+	return ;
+	//while(1);
+}
+
+void Init_WIFI(void)
+{
+	UART_HandleTypeDef WifiUartHandle;
+	WifiUartHandle.Instance        = UART4;
+
+	WifiUartHandle.Init.BaudRate   = 9600;
+	WifiUartHandle.Init.WordLength = UART_WORDLENGTH_8B;
+	WifiUartHandle.Init.StopBits   = UART_STOPBITS_1;
+	WifiUartHandle.Init.Parity     = UART_PARITY_NONE;
+	WifiUartHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
+	WifiUartHandle.Init.Mode       = UART_MODE_TX_RX;
+	WifiUartHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT; 
+	
+	if(HAL_UART_DeInit(&WifiUartHandle) != HAL_OK)
+	{
+		Errors_Handler();
+	}  
+	if(HAL_UART_Init(&WifiUartHandle) != HAL_OK)
+	{
+		Errors_Handler();
+	}	
+	/*while (1)
+	{
+		if(HAL_UART_Transmit(&WifiUartHandle, (uint8_t*)aTxBuffer, TXBUFFERSIZE, 5000)!= HAL_OK)
+		{
+			Errors_Handler();
+		}
+		if(HAL_UART_Receive(&WifiUartHandle, (uint8_t *)aRxBuffer, RXBUFFERSIZE, 5000) != HAL_OK)
+		{
+			Errors_Handler();  
+		} else if(HAL_UART_Receive(&WifiUartHandle, (uint8_t *)aRxBuffer, RXBUFFERSIZE, 5000) == HAL_OK){
+			Errors_Handler();  
+		}
+	}*/
+}
+

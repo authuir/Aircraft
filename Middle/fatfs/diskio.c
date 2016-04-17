@@ -8,9 +8,12 @@
 /*-----------------------------------------------------------------------*/
 
 #include "diskio.h"		/* FatFs lower layer API */
+#include "ff_gen_drv.h"
 //#include "usbdisk.h"	/* Example: Header file of existing USB MSD control module */
 //#include "atadrive.h"	/* Example: Header file of existing ATA harddisk control module */
 //#include "sdcard.h"		/* Example: Header file of existing MMC/SDC contorl module */
+
+extern Disk_drvTypeDef  disk;
 
 /* Definitions of physical drive number for each drive */
 #define ATA		0	/* Example: Map ATA harddisk to physical drive 0 */
@@ -26,7 +29,10 @@ DSTATUS disk_status (
 	BYTE pdrv		/* Physical drive nmuber to identify the drive */
 )
 {
-	return STA_NOINIT;
+  DSTATUS stat;
+  
+  stat = disk.drv[pdrv]->disk_status(disk.lun[pdrv]);
+  return stat;
 }
 
 
@@ -39,7 +45,14 @@ DSTATUS disk_initialize (
 	BYTE pdrv				/* Physical drive nmuber to identify the drive */
 )
 {
-	return STA_NOINIT;
+  DSTATUS stat = RES_OK;
+  
+  if(disk.is_initialized[pdrv] == 0)
+  { 
+    disk.is_initialized[pdrv] = 1;
+    stat = disk.drv[pdrv]->disk_initialize(disk.lun[pdrv]);
+  }
+  return stat;
 }
 
 
@@ -55,7 +68,10 @@ DRESULT disk_read (
 	UINT count		/* Number of sectors to read */
 )
 {
-	return RES_PARERR;
+  DRESULT res;
+ 
+  res = disk.drv[pdrv]->disk_read(disk.lun[pdrv], buff, sector, count);
+  return res;
 }
 
 
@@ -72,7 +88,10 @@ DRESULT disk_write (
 	UINT count			/* Number of sectors to write */
 )
 {
-	return RES_PARERR;
+  DRESULT res;
+  
+  res = disk.drv[pdrv]->disk_write(disk.lun[pdrv], buff, sector, count);
+  return res;
 }
 #endif
 
@@ -88,7 +107,10 @@ DRESULT disk_ioctl (
 	void *buff		/* Buffer to send/receive control data */
 )
 {
-	return RES_PARERR;
+  DRESULT res;
+
+  res = disk.drv[pdrv]->disk_ioctl(disk.lun[pdrv], cmd, buff);
+  return res;
 }
 #endif
 

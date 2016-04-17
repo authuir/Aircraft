@@ -130,7 +130,7 @@ void Init_LED()
 	__HAL_RCC_GPIOC_CLK_ENABLE();
 
 	/* Configure the GPIO_LED pin */
-	gpio_init_structure.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_3;
+	gpio_init_structure.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2;
 	gpio_init_structure.Mode = GPIO_MODE_OUTPUT_PP;
 	gpio_init_structure.Pull = GPIO_PULLUP;
 	gpio_init_structure.Speed = GPIO_SPEED_LOW;
