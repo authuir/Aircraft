@@ -9,6 +9,8 @@ extern void BLE_UART_MspDeInit(UART_HandleTypeDef *huart);
 extern void WIFI_UART_MspInit(UART_HandleTypeDef *huart);
 extern void WIFI_UART_MspDeInit(UART_HandleTypeDef *huart);
 
+ extern void PX4_UART_MspInit(UART_HandleTypeDef *huart);
+  extern void GPS_UART_MspInit(UART_HandleTypeDef *huart);
 /**
   * @brief UART MSP Initialization 
   *        This function configures the hardware resources used in this example: 
@@ -23,9 +25,17 @@ void HAL_UART_MspInit(UART_HandleTypeDef *huart)
 	if (huart->Instance == UART7)
 	{
 		BLE_UART_MspInit(huart);
-	} else if (huart->Instance == UART4)
+	} else if (huart->Instance == USART2)
 	{
 		WIFI_UART_MspInit(huart);
+	}
+	else if(huart->Instance ==USART1)
+	{
+		PX4_UART_MspInit(huart);
+	}
+	else if(huart->Instance ==UART4)
+	{
+		GPS_UART_MspInit(huart);
 	}
 }
 

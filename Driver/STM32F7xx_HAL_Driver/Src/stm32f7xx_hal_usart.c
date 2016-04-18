@@ -1478,7 +1478,7 @@ static HAL_StatusTypeDef USART_TransmitReceive_IT(USART_HandleTypeDef *husart)
   */
 static HAL_StatusTypeDef USART_WaitOnFlagUntilTimeout(USART_HandleTypeDef *husart, uint32_t Flag, FlagStatus Status, uint32_t Timeout)  
 {
-  uint32_t tickstart = HAL_GetTick();
+   uint32_t tickstart = HAL_GetTick();
 
   /* Wait until flag is set */
   if(Status == RESET)

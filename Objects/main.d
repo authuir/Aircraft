@@ -54,6 +54,7 @@
 .\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\main.o: .\Middle\wifi.h
 .\objects\main.o: .\Middle\ble.h
+.\objects\main.o: .\Middle\px4.h
 .\objects\main.o: .\Middle\fatfs\ff_gen_drv.h
 .\objects\main.o: .\Middle\fatfs\diskio.h
 .\objects\main.o: .\Middle\fatfs\integer.h
@@ -61,3 +62,5 @@
 .\objects\main.o: .\Middle\fatfs\ffconf.h
 .\objects\main.o: .\Middle\fatfs\sd_bsp.h
 .\objects\main.o: .\Middle\fatfs\sd_diskio.h
+.\objects\main.o: .\Middle\gps.h
+.\objects\main.o: .\Middle\pwm.h

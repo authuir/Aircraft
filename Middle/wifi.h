@@ -1,6 +1,7 @@
 #ifndef __WIFI_H
 #define __WIFI_H
-
+#include "stm32f7xx.h"
+#include "stm32f7xx_hal.h"
 
 #define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
 
@@ -28,5 +29,8 @@
 
 void Init_WIFI(void);
 void Init_WIFI_test(void);
-
+void WifiSendCom_Start(void);
+void WifiSendCom_Check(uint8_t InputData);
+void WifiSendCom_Reset();
+HAL_StatusTypeDef Wifi_send(uint8_t * TxBuffer, uint32_t TxLen);
 #endif

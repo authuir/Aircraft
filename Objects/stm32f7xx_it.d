@@ -51,3 +51,7 @@
 .\objects\stm32f7xx_it.o: .\Driver\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_usart_ex.h
 .\objects\stm32f7xx_it.o: .\Driver\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_hcd.h
 .\objects\stm32f7xx_it.o: .\Driver\STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_usb.h
+.\objects\stm32f7xx_it.o: .\Middle\px4.h
+.\objects\stm32f7xx_it.o: .\Middle\GPS.h
+.\objects\stm32f7xx_it.o: .\Middle\ble.h
+.\objects\stm32f7xx_it.o: .\Middle\wifi.h

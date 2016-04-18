@@ -22,7 +22,7 @@
 //void MPU_Config(void);
 void SystemClock_Config(void);
 void CPU_CACHE_Enable(void);
-
+void MPU_Config(void);
 void Init_LED(void);
 
 

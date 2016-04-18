@@ -370,7 +370,7 @@
             <vShortEn>0</vShortEn>
             <vShortWch>0</vShortWch>
             <VariousControls>
-              <MiscControls>--C99</MiscControls>
+              <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>.\Driver\STM32F7xx_HAL_Driver\Inc;.\Config;.\Middle;.\Middle\fatfs;.\Middle\fatfs\option;.\User</IncludePath>
@@ -446,6 +446,11 @@
               <FileType>1</FileType>
               <FilePath>.\Middle\gps.c</FilePath>
             </File>
+            <File>
+              <FileName>gps.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Middle\gps.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -455,6 +460,11 @@
               <FileName>px4.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middle\px4.c</FilePath>
+            </File>
+            <File>
+              <FileName>px4.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Middle\px4.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -507,14 +517,14 @@
               <FilePath>.\Middle\fatfs\ff_gen_drv.c</FilePath>
             </File>
             <File>
-              <FileName>sd_diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Middle\fatfs\sd_diskio.c</FilePath>
-            </File>
-            <File>
               <FileName>sd_bsp.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middle\fatfs\sd_bsp.c</FilePath>
+            </File>
+            <File>
+              <FileName>sd_diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middle\fatfs\sd_diskio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -525,6 +535,16 @@
               <FileName>comm.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Middle\comm.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Middle/Pwm</GroupName>
+          <Files>
+            <File>
+              <FileName>pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Middle\pwm.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -873,16 +893,16 @@
     <files>
       <file attr="config" category="source" condition="STM32F756_ARMCC" name="Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\arm\startup_stm32f756xx.s" version="1.0.1">
         <instance index="0">RTE\Device\STM32F756VGTx\startup_stm32f756xx.s</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.1" condition="STM32F7 CMSIS"/>
-        <package name="STM32F7xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.2.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.2" condition="STM32F7 CMSIS"/>
+        <package name="STM32F7xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.4.0"/>
         <targetInfos>
           <targetInfo name="AirCraft"/>
         </targetInfos>
       </file>
       <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\system_stm32f7xx.c" version="1.0.1">
         <instance index="0">RTE\Device\STM32F756VGTx\system_stm32f7xx.c</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.1" condition="STM32F7 CMSIS"/>
-        <package name="STM32F7xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.2.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.2" condition="STM32F7 CMSIS"/>
+        <package name="STM32F7xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.4.0"/>
         <targetInfos>
           <targetInfo name="AirCraft"/>
         </targetInfos>
